@@ -1,26 +1,12 @@
 import express from 'express';
-import moment from 'moment'
+import dodaj from './dodaj'
+import dohvati from './dohvati'
 
-const app = express ()
-const port = 3005
-
-app.get('/datum' , (req, res) => 
-{
-res.send(moment().format('MMM Do YY'))
-});
-
-app.get('/vrijeme' , (req, res) => 
-{
-    
-    let t = ['kisovito', 'suncano', 'občacno']
-     res.json(t[Math.floor(Math.random() * t.length)]);
-    
-});
-
-app.get('/' , (req, res) =>  res.send('/datum i /vrijeme'))
-app.listen (port, console.log('Na 3001 sam'));
-
- 
+const app = express()  // instanciranje aplikacije 
+const port = 3000  // port na kojem će web server slušati
 
 
-        
+app.get('/dodaj', dodaj.dod);
+app.get('/dohvati', dohvati.doh);
+
+app.listen(port, () => console.log(`Slušam na portu ${port}!`))
